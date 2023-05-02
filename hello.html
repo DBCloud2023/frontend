@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <meta name="description" content="Our first HTML page" />
+    <meta name="keywords" content="html, tags, attributes" />
+</head>
+<body>
+
+    <h1>Titlul paginii</h1>
+
+    <h2>A doua sectiune</h2>
+
+    <p id="paragraf_01" title="Title pe paragraf">Primul paragraf din <b>a doua</b> sectiune</p>
+
+    <i>italic text</i>
+
+    <article>
+        <header>
+            <h2>Prima sectiune</h2>
+        </header>
+        <main>
+            <p id="paragraf_01">Primul paragraf din<br> prima sectiune</p>
+        </main>
+    
+        <h3>Prima subsectiune</h3>
+        <p>Primul paragraf din prima subsectiune a primei sectiuni</p>    
+    </article>
+
+    <img src="masina.jpeg" alt="o masina printre blocuri" title="KIA Hibrid..." />
+
+    <b><i>bold si italic</b></i> <!-- this is not valid, although browser allows it -->
+
+    <nav><!-- div cu continut semantic (navigation) -->
+        <a href="http://google.ro">Google</a>
+    </nav>
+
+    <aside>
+        Continut lateral
+    </aside>
+
+    <footer>
+        Copyright &copy; 2023
+    </footer>
+
+    <img src="https://s13emagst.akamaized.net/layout/ro/images/db//102/152474.jpg" />
+
+
+    
+    <ol>
+        <li>Primul element</li>
+        <li>Al doilea element</li>
+        <li>Al treilea element</li>
+        <li>Al patrulea element</li>
+    </ol>    
+
+    <table>
+        <tfoot>
+            <tr>
+                <td colspan="3">Footer tabel Footer tabel Footer tabel Footer tabel Footer tabel Footer tabel </td>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr>
+                <td>Popescu</td>
+                <td>Vasile</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>Georgescu</td>
+                <td>Adrian</td>
+                <td>7</td>
+            </tr>
+        </tbody>
+        <thead>
+            <tr>
+                <th>Nume</th>
+                <th>Prenume</th>
+                <th>Nota</th>
+            </tr>
+        </thead>
+        
+
+    </table>
+
+    <form action="registerAccount" method="post">
+        <label for="camp_nume">Nume:</label>
+        <input type="text" id="camp_nume" name="nume">
+
+        <label for="camp_varsta">Varsta:</label>
+        <input type="text" id="camp_varsta" name="varsta">
+
+        <input type="submit" value="Trimite">
+    </form>
+
+
+    
+</body>
+</html>
