@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- <script src="hello.js"></script> -->
+    <script src="dom.js"></script>
+
+    <style>
+        .bordered {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Titlul site-ului</h1>
+    </header>
+
+    <main id="continut-pricipal" class="bordered">
+        <article id="articol-belgrad" class="bordered">
+            <header><h2>Atac la Belgrad</h2></header>
+            <div>Un atac s-a produs astazi la o scoala din Belgrad.</div>
+        </article>
+    </main>
+
+    <aside id="lateral" class="bordered">
+        <nav>
+            <ul>
+                <li><a href="http://www.google.ro">Google</a></li>
+                <li><a href="http://www.yahoo.ro">Yahoo</a></li>
+                <li><a href="http://www.bing.com">Bing</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <footer id="nota-subsol">
+        Copyright &copy; 2023
+    </footer>
+
+    <input type="text" id="your-name" value="Vasilica" />
+    <button onclick="readName();">Print name to console</button>
+
+    <!-- <div id="nota-subsol">Alt div</div> -->
+
+    <script>
+        // var response = confirm("Are you sure?");
+        // console.log(response);
+        // if (response) {
+        //     alert("Hello, word!");
+        // }
+    </script>
+    
+</body>
+</html>
