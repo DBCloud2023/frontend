@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #hello {
+            background-color: #609d9f;
+            width: 300px;
+            height: 300px;
+            text-align: center;
+            color: aliceblue;
+            font-size: 50px;
+            margin-left: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="hello">
+        Hello from div
+    </div>
+    <script>
+        var div = document.getElementById('hello');
+        div.onmouseenter = () => {
+            div.style.backgroundColor = '#333';
+            // console.log(div.style)
+        }
+
+        function changeColor() {
+            console.log(div);
+            div.style.backgroundColor = '#609d9f';
+        }
+
+        div.onmouseleave = () => {
+            setTimeout(changeColor, 1000);
+        }
+
+        div.onclick = (event) => {
+            div.style.backgroundColor = '#fc4103';
+            event.stopPropagation(); // nu se va mai propaga la parinte evenimentul (parinte = body aici )
+            // console.log('The div has been clicked');
+            console.log(event)
+            console.log(event.clientX, event.clientY)
+        }
+
+        var body = document.getElementsByTagName('body')[0];
+
+        body.onclick = () => {
+            body.style.backgroundColor = '#fc4103';
+            console.log('The body has been clicked')
+        }
+
+    </script>
+</body>
+
+</html>
