@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="touchable" style="background-color: rgb(236, 236, 171); width: 300px; height: 300px; border: 1px dotted blue;">
+        Touch me
+    </div>
+    <div class="touchable" style="background-color: rgb(152, 204, 112); width: 300px; height: 300px; border: 1px dotted blue;">
+        Touch me
+    </div>
+
+    <script>
+        const touchables = document.getElementsByClassName('touchable');
+        // const touchables = document.querySelectorAll('.touchable');
+        for(touch of touchables) {
+            console.log(touch);
+            touch.addEventListener('click', function() {
+                console.log('Touched div');
+            });
+        }
+    </script>
+
+    <form name="login-form" action="/login" method="get">
+        <label for="username">Username:</label>
+        <input id="username" type="text" name="username" />
+
+        <label for="password">Password:</label>
+        <input id="password" type="password" name="password" />
+
+        <input type="hidden" name="os" value="" />
+
+        <button type="submit">Send data</button>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('input[name="os"]').value = window.navigator.platform;
+        });
+
+        const loginForm = document.querySelector('form[name="login-form"]');
+        loginForm.addEventListener('submit', (event) => {
+            console.log('Someone is trying to login');
+            event.preventDefault();
+        });
+    </script>
+
+    <p><a href="http://www.google.ro">Google</a></p>
+
+    <script>
+        const allLinks = document.querySelectorAll('a');
+        for (link of allLinks) {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                console.log('you want to leave');
+                // facebook.com?redirect=http://www.google.ro
+            });
+        }
+    </script>
+    
+</body>
+</html>

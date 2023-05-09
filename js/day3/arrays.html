@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <input type="button" value="Clear timeout" onclick="clearTimeout(timeoutToStop);" />
+    <button onclick="clearTimeout(timeoutToStop);">Clear timeout</button>
+
+    <script>
+        const arr = [8, 6, 9, 10, 3];
+        arr.push(7);
+        console.log(arr);
+        const elem = arr.pop();
+        console.log(elem, arr);
+
+        console.log(arr.join(', '));
+        arrStr = "Ana are mere".split(' ');
+        console.log(arrStr);
+
+        const deletedElements = arrStr.splice(2, 1, 'pere');
+        console.log(deletedElements, arrStr);
+
+        function comparaStr(str1, str2) {
+            return - str1.length + str2.length;
+        }
+
+        arrStr.sort(comparaStr);
+        console.log(arrStr);
+
+        arrStr = arrStr.map((str) => {
+            str = str.toUpperCase();
+            return str;
+        });
+        console.log(arrStr);
+
+        function hasEvenNoOfChars(str) {
+            return str.length % 2 == 0;
+        }
+        arrStrEven = arrStr.filter(hasEvenNoOfChars);
+        console.log(arrStrEven);
+
+        // PERE, ANA, ARE
+        const noOfChars = arrStr.reduce((acc, str) => {
+            acc += str.length;
+            return acc;
+        }, 0);
+        console.log(noOfChars);
+
+        const intervalSalutare = setInterval(() => { console.log('Salutare!')}, 1000);
+        const timeoutToStop = setTimeout(() => { 
+            clearInterval(intervalSalutare);
+            console.log('Stopping interval');
+        }, 5000);
+        // clearTimeout(timeoutToStop); // ?
+    </script>
+    
+</body>
+</html>
