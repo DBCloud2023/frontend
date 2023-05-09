@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        let username = 'Vasilica';
+        let str = `Hello, ${username}`;
+        console.log(str);
+
+        const myPow = function(x, y = 1) { // x ^ y
+            let z = 1;
+            for (i = 0; i < y; i++) {
+                z *= x;
+            }
+            return z;
+        }
+        console.log(myPow(4)); // 4;
+        console.log(myPow(2, 3)); // 8
+
+        function printAll(firstStr, ...otherStrs) {
+            console.log(firstStr, otherStrs);
+            console.log(firstStr, ...otherStrs);
+        }
+
+        printAll('Vasilica', 'Gigel', 'Ionel', 'Adi');
+        let myPair = [2, 3];
+        console.log(myPow(...myPair));
+
+        [student1, student2, student3 = 'Necunoscut'] = ['Gigel', 'Andreea', , 'Raul'];
+        console.log(student1, student2, student3);
+
+        console.log(myPair);
+        [myPair[1], myPair[0]] = [...myPair];
+        console.log(myPair); // [3, 2]
+        [myPair[1], myPair[0]] = myPair; // newMyPair = [ 3 , [3,2] ] // TODO: ???
+        console.log(myPair);
+
+        let myNewPair = [900, 762];
+        [vasilica, asdkjajdhasjd] = myNewPair;
+        console.log(vasilica, asdkjajdhasjd);
+
+        var student = {
+            nume: 'Vasile',
+            nota: 6
+        };
+        // ( {numele, media}) = student;
+        var {nume, nota} = student;
+        console.log(nume, nota);
+
+        ( {numele, media} = { numele: 'Gigi', media: 9} );
+        console.log(numele, media);
+
+        ( {a, b} = {a: 1, b: true} )
+        console.log(a, b);
+
+        const model = 'Model3';
+        const car = {
+            make: 'Tesla',
+            model // model: model
+        };
+        console.log(car);
+
+        function Student(nume, nota) {
+            this.nume = nume;
+            this.nota = nota;
+
+            this.caString = function() {
+                return this.nume + ': ' + this.nota;
+            }
+        }
+
+        var student1 = new Student(student.nume, student.nota);
+        console.log(student1, student1.caString());
+
+        // var student = {
+        //     nume: 'Vasile',
+        //     nota: 6
+        // };
+        ({nume, nota} = student);
+        var student2 = new Student(nume, nota);
+        console.log(student2);
+
+        console.log(student1.__proto__ == student2.__proto__);
+        console.log(student1.__proto__, typeof student1.__proto__);
+        console.log(student1.__proto__ == Student.prototype);
+        console.log(Student.prototype, typeof Student.prototype);
+        // console.log(Student.__proto__); // explore more about this
+
+        Student.prototype.sayHello = function() {
+            return 'Hello from sayHello';
+        }
+        console.log(student1.sayHello());
+        console.log(student2.sayHello());
+        // console.log(Student.sayHello());
+
+        Student.prototype.university = 'UPB';
+        console.log(student1.university, student2.university); // UPB UPB
+
+        student1.street = 'Florilor';
+        console.log(student1.street, student2.street);
+
+        student1.university = 'ASE';
+        console.log(student1.university, student2.university); // ASE UPB
+
+        Student.prototype.schools = ['Scoala 1', 'Scoala 2'];
+        console.log(student1.schools, student2.schools);
+
+        student1.schools.push('Scoala 3'); // schools is an array (object/reference), 
+        // and there is only one instance (the same for all objects, although it was not
+        // modified through prototype)
+        console.log(student1.schools, student2.schools); // the same
+
+        let firstStr = new String('Vasile');
+        let secondStr = 'Vasile'; // BONUS POINTS: To they have the same reference?
+        console.log(firstStr, secondStr, typeof firstStr, typeof secondStr);
+        console.log(firstStr === secondStr);
+        console.log(firstStr == secondStr);
+        console.log(firstStr.__proto__, secondStr.__proto__);
+
+        function Animal(type) {
+            this.type = type;
+        }
+        Animal.prototype.getType = function() {
+            return 'Animal type is ' + this.type;
+        }
+
+        function Mamifer(mamifer) {
+            this.mamifer = mamifer;
+        }
+        Mamifer.prototype = new Animal('Mamifer'); // Mamifer extends Animal
+        Mamifer.prototype.getTypeMamifer = function() {
+            return 'Mamifer type is ' + this.mamifer;
+        }
+
+        animal1 = new Animal('Dinozaur');
+        console.log(animal1.getType());
+        // console.log(animal1.getTypeMamifer()); // is not a function
+
+        mamifer1 = new Mamifer('Pisica');
+        console.log(mamifer1.getTypeMamifer());
+        console.log(mamifer1.getType());
+
+        class Vehicle {
+            static noCreated = 0;
+
+            constructor(nume, noWheels) {
+                this.nume = nume;
+                this._noWheels = noWheels;
+                Vehicle.noCreated++;
+            }
+
+            get noWheels() {
+                return this._noWheels;
+            }
+
+            set noWheels(param) {
+                this._noWheels = param;
+            }
+
+            static getNoCreated() {
+                return Vehicle.noCreated;
+            }
+
+            caString() {
+                return `Vehicle ${this.nume} has ${this.noWheels} wheels (now there are ${Vehicle.getNoCreated()} vehicles).`;
+            }
+        }
+
+        class Car extends Vehicle {
+            constructor(nume) {
+                super(nume, 4);
+            }
+        }
+
+        const vehicle1 = new Vehicle("Bicicleta1", 2);
+        console.log(vehicle1, vehicle1.caString());
+
+        const car1 = new Car("Tesla Model3");
+        console.log(car1, car1.caString());
+
+        console.log('vehicle1 instanceof Vehicle', vehicle1 instanceof Vehicle);
+        console.log('vehicle1 instanceof Car', vehicle1 instanceof Car);
+        console.log('car1 instanceof Car', car1 instanceof Car);
+        console.log('car1 instanceof Vehicle', car1 instanceof Vehicle);
+
+        console.log(vehicle1.caString());
+        vehicle1.noWheels = 3;
+        console.log(vehicle1.caString());
+    </script>
+    
+</body>
+</html>
