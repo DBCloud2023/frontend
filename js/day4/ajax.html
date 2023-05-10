@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax</title>
+</head>
+<body>
+
+    <ul id="list" >
+
+    </ul>
+    <button onclick="requestToDos()">Test</button>
+
+    <script>
+        function requestToDos() {
+            var xhttp;
+            document.getElementById("list").innerHTML = "";
+            const ulItem = document.getElementById("list");
+
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    const todos = JSON.parse(this.responseText);
+
+                    // console.log(this.responseText);
+                    for(let i = 0;i < todos.length; i++){
+                        const liItem = document.createElement('li');
+                        const textItem = document.createTextNode(todos[i].title);
+                        liItem.appendChild(textItem);
+                        ulItem.appendChild(liItem);
+                    }
+                }
+            };
+            xhttp.open("GET", "https://jsonplaceholder.typicode.com/todos", true);
+            xhttp.send();
+        }
+    </script>
+
+</body>
+</html>
