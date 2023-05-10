@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promises</title>
+</head>
+<body>
+    
+
+    <script>
+        let myPromise = new Promise(function(resolve, reject) {
+            setTimeout(() => {
+                const no = Math.floor(Math.random() * 10); // [0; 1)
+                if (no % 2 == 0) {
+                    console.log('promise rezolvat');
+                    resolve();
+                } else {
+                    console.error('promise nerezolvat');
+                    reject();
+                }
+            }, 3 * 1000);
+        });
+        console.log('mesaj de dupa promise');
+        myPromise.then(function() {
+            // code pentru atunci cand promise-ul s-a rezolvat
+            console.log('am inteles ca s-a rezolvat');
+        });
+        myPromise.catch(function() {
+            console.log('am inteles ca nu s-a rezolvat');
+        });
+    </script>
+</body>
+</html>

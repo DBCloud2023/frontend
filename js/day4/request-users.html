@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users from JSON placeholder</title>
+</head>
+<body>
+
+    <table id="users-table">
+        <tbody>
+        </tbody>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>E-mail</th>
+            </tr>
+        </thead>
+    </table>
+
+    <script>
+        const allowedProps = ['name', 'email'];
+        function sendRequest(url) {
+            
+        }
+        function createRow(tableElem, obj) {
+            const tbodyElem = tableElem.getElementsByTagName('tbody')[0];
+            const rowElem = document.createElement('tr');
+            for (prop in obj) {
+                if (allowedProps.includes(prop)) {
+                    const tdElem = document.createElement('td');
+                    const textElem = document.createTextNode(obj[prop]);
+                    // obj.prop === obj['prop']
+                    tdElem.appendChild(textElem);
+                    rowElem.appendChild(tdElem);
+                }
+            }
+            tbodyElem.appendChild(rowElem);
+            console.log(prop);
+        }
+        const url = 'https://jsonplaceholder.typicode.com/users';
+        const table = document.getElementById('users-table');
+        let promiseUsers = new Promise((res, rej) => {
+
+            xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    const json = JSON.parse(this.responseText);
+                    console.log(json);
+                    res(json);
+                } else if (this.readyState == 4 && this.status / 100 == 5) {
+                    rej('Nu am primit date');
+                }
+            };
+            xhttp.open("GET", url, true);
+            xhttp.send();
+
+        }).then((response) => {
+            for (obj of response) {
+                createRow(table, obj);
+            }
+        });
+        console.log(promiseUsers);
+        // setTimeout(function() {
+        //     console.log(promiseUsers);
+        // }, 3000);
+
+        // for (obj of json) {
+        //         createRow(table, obj);
+        //     }
+
+
+
+    </script>
+    
+</body>
+</html>

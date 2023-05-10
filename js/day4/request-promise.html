@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Users</h1>
+    <ul id="users-ul"></ul>
+
+    <div>
+        Users not loaded yet
+        <table id="todos-table"></table>
+    </div>
+    
+
+    <script>
+        const urlUsers = 'https://jsonplaceholder.typicode.com/users';
+        const urlTodos = 'https://jsonplaceholder.typicode.com/todos';
+        function createRequestPromise(url) {
+            return new Promise((resolve, reject) => {
+                xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        const json = JSON.parse(this.responseText);
+                        console.log(json);
+                        resolve(json);
+                    } else if (this.readyState == 4 && this.status / 100 == 5) {
+                        reject('Error receiving data');
+                    }
+                };
+                xhttp.open("GET", url, true);
+                xhttp.send();
+            });
+        }
+
+        console.log('mesaj 1'); // 1
+
+        const promiseUsers = createRequestPromise(urlUsers);
+        promiseUsers.then((data) => {
+            console.log('users received: ' + data); // inainte de 2, intre 2 si 3, sau dupa 3
+            // add users to users-ul
+        });
+
+        console.log('mesaj 2'); // 2
+
+        const promiseTodos = createRequestPromise(urlTodos);
+        promiseTodos.then((data) => {
+            console.log('todos received: ' + data); // inainte de 3 sau dupa 3
+            // add todos to todos-tabl
+        });
+
+        console.log('mesaj 3'); // 3
+
+        // users, todos ?
+        // todos, users ? 
+    </script>
+
+    <footer></footer>
+</body>
+</html>
