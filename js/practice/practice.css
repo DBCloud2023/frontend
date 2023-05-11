@@ -1,0 +1,35 @@
+#not-started {
+    border : 1px solid orange;
+    background-color: rgb(226, 215, 195);
+    height: 500px;
+}
+#progress {
+    border : 1px solid rgb(65, 59, 59);
+    background-color: rgb(202, 178, 178);
+}
+#blocked {
+    border : 1px solid blue;
+    background-color: rgb(198, 213, 245);
+}
+#finished {
+    border : 1px solid orange;
+    background-color: rgb(226, 215, 195);
+    height: 500px;
+}
+
+#not-started ul{
+    border : 1px solid rgb(3, 3, 3);
+    background-color: rgb(207, 96, 5);
+}
+#finished ul{
+    border : 1px solid rgb(3, 3, 3);
+    background-color: rgb(207, 96, 5);
+}
+#progress ul{
+    border : 1px solid rgb(3, 3, 3);
+    background-color: rgb(207, 96, 5);
+}
+#blocked ul{
+    border : 1px solid rgb(3, 3, 3);
+    background-color: rgb(207, 96, 5);
+}
