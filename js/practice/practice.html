@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-4">
                 <div id="not-started" class="w-100 p-3">
-                    <ul>
+                    <ul title="You can drag this task to In progress" id="not-started-1" draggable="true" ondragstart="startDragNotStarted(event)">
                         <li>
                             Title: Training AJAX
                         </li>
@@ -27,7 +27,7 @@
                             Assignee: Irina
                         </li>
                     </ul>
-                    <ul>
+                    <ul id="not-started-2" draggable="true" ondragstart="startDragNotStarted(event)">
                         <li>
                             Title: Training AJAX
                         </li>
@@ -38,7 +38,7 @@
                             Assignee: Irina
                         </li>
                     </ul>
-                    <ul>
+                    <ul id="not-started-3" draggable="true" ondragstart="startDragNotStarted(event)">
                         <li>
                             Title: Training AJAX
                         </li>
@@ -53,7 +53,8 @@
             </div>
             <div class="col-4">
                 <div class="d-flex flex-column h-100">
-                    <div id="progress" class="w-100 h-100 p-3 mb-3">
+                    <div id="progress" class="w-100 h-100 p-3 mb-3" 
+                        ondrop="dropTask(event, this)" ondragover="allowDrop(event)" ondragleave="dragout(event)">
                         <ul>
                             <li>
                                 Title: Training AJAX
@@ -83,7 +84,7 @@
             </div>
             <div class="col-4">
                 <div id="finished" class="w-100 p-3">
-                    <ul>
+                    <ul id="finished-1" draggable="true" ondragstart="startDragFinished(event)">
                         <li>
                             Title: Training AJAX
                         </li>
@@ -98,6 +99,43 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function startDragNotStarted(event) {
+            const notStartedTaskId = event.target.id;
+            event.dataTransfer.setData('taskId', notStartedTaskId);
+            event.dataTransfer.setData('type', 'not-started');
+        }
+
+        function startDragFinished(event) {
+            const finishedTaskId = event.target.id;
+            event.dataTransfer.setData('taskId', finishedTaskId);
+            event.dataTransfer.setData('type', 'finished');
+        }
+
+        function allowDrop(event) {
+            event.preventDefault();
+            const tileElement = event.target;
+            tileElement.classList.add('dragover');
+        }
+
+        function dragout(event) {
+            event.preventDefault();          
+            const tileElement = event.target;
+            tileElement.classList.remove('dragover');  
+        }
+
+        function dropTask(event, target) {
+            event.preventDefault();
+            const taskId = event.dataTransfer.getData('taskId');
+            const type = event.dataTransfer.getData('type');
+            const taskElemToDrag = document.getElementById(taskId);
+            console.log(target);
+            console.log(event.target);
+            target.appendChild(taskElemToDrag);
+
+        }
+    </script>
 </body>
 
 </html>
