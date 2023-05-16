@@ -22,7 +22,7 @@ export default class Users extends React.Component {
         };
         requstUserPage = this.requestUsers;
         usersPerPage = this.props.perPage;
-        // this.requestUsers.bind(this); ?
+        this.requestUsers = this.requestUsers.bind(this);
     }
 
     componentDidMount() {
@@ -30,10 +30,17 @@ export default class Users extends React.Component {
         this.requestUsers(this.props.perPage);
     }
 
-    receivedPageNumber = function(pageNumber) {
+    receivedPageNumber = (pageNumber) => {
+        console.log(this);
         console.log('Received new page Number from pagination: ' + pageNumber);
         requstUserPage(usersPerPage, pageNumber);
-    }
+    } 
+
+    // receivedPageNumber(pageNumber) {
+    //     console.log(this);
+    //     console.log('Received new page Number from pagination: ' + pageNumber);
+    //     requstUserPage(usersPerPage, pageNumber);
+    // }
     
     render() {
         return <div id="users">
@@ -73,11 +80,14 @@ export default class Users extends React.Component {
         });
     }
 
-    requestUsers(perPage, pageNo = 1) { // TODO: request only current page
+    requestUsers = (perPage, pageNo = 1) => { // TODO: request only current page
+        console.log(this);
         fetch(USERS_URL + '?_limit=' + perPage + '&_page=' + pageNo).then((response) => {
             return response.json();
         }).then((users) => {
             // this.users = data;
+            console.log('data is ', users);
+            console.log(this);
             this.setState({
                 users
             });

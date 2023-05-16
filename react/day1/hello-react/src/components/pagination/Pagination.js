@@ -30,7 +30,7 @@ class Pagination extends React.Component {
         console.log('Pagination rerenders');
         let pages = [];
         console.log(this.props.noPages);
-        for (let i = 0; i < this.props.noPages; i++) {
+        for (let i = 1; i <= this.props.noPages; i++) {
             console.log('pushing page ' + i);
             pages.push(<Page pageNumber={i} clickedLiChild={this.clickedLiFromChild} />);
         }
