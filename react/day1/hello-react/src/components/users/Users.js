@@ -30,6 +30,10 @@ export default class Users extends React.Component {
         this.requestUsers(this.props.perPage);
     }
 
+    componentWillUnmount() {
+        console.log('Users componentWillUnmount');
+    }
+
     receivedPageNumber = (pageNumber) => {
         console.log(this);
         console.log('Received new page Number from pagination: ' + pageNumber);
