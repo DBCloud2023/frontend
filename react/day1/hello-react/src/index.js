@@ -5,6 +5,7 @@ import App from './App';
 import Hello from './components/Hello';
 import reportWebVitals from './reportWebVitals';
 import Header from './components/Header';
+import Navigation from './components/common/Navigation';
 
 function getCurrentDate() {
   let today = new Date();
@@ -20,9 +21,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const astazi = getCurrentDate();
 root.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <Header azi={getCurrentDate} />
-    <Hello />
+    {/* <Header azi={getCurrentDate} /> */}
+    
+    <App />
   </React.StrictMode>
 );
 

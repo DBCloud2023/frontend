@@ -27,10 +27,10 @@ const test = '';
 const goodbyeElement = React.createElement(Goodbye, {
     name
 }, []);
-const usersElement = React.createElement(Users, {
-    perPage: userPerPage
-}, []);
-const sectionElement = React.createElement(React.Fragment, {}, [goodbyeElement, usersElement]);
+// const usersElement = React.createElement(Users, {
+//     perPage: userPerPage
+// }, []);
+const sectionElement = React.createElement(React.Fragment, {}, [goodbyeElement]);
 const helloDiv = document.getElementById('container');
 console.log(helloDiv);
 ReactDOM.render(sectionElement, helloDiv);
