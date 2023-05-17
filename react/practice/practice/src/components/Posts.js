@@ -7,6 +7,7 @@ export default function Posts() {
     const url = `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=5`;
     useEffect(() => {
         //make http request
+        console.log(page);
         fetch(url)
             .then((body) => body.json())
             .then((json) => {
@@ -20,6 +21,13 @@ export default function Posts() {
         setPage(pageNo);
     }
 
+    const offsetPage = (offset) => {
+        if (page + offset <= 0 || page + offset >= 6) {
+            return;
+        }
+        setPage(page + offset);
+    }
+
     return (<React.Fragment>
         {/* postarile */}
         {
@@ -27,6 +35,6 @@ export default function Posts() {
                 return (<Post post={post} key={id} />)
             })
         }
-        <PageNav noPages={5} changePage={changePage} />
+        <PageNav noPages={5} changePage={changePage} offsetPage={offsetPage} curentPage={page} />
     </React.Fragment>);
 }
