@@ -4,7 +4,8 @@ import PageNav from './PageNav';
 export default function Posts() {
     const [posts, setPosts] = useState([]);
     const [page, setPage] = useState(1);
-    const url = `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=5`;
+    const [limit, setLimit] = useState(5);
+    const url = `https://jsonplaceholder.typicode.com/posts?_page=${page}&_limit=${limit}`;
     useEffect(() => {
         //make http request
         console.log(page);
@@ -14,7 +15,7 @@ export default function Posts() {
                 console.log(json);
                 setPosts(json);
             })
-    }, [page]);
+    }, [page, limit]);
 
     const changePage = (pageNo) => {
         console.log(pageNo);
@@ -28,6 +29,10 @@ export default function Posts() {
         setPage(page + offset);
     }
 
+    const changeLimit = (limit) => {
+        setLimit(limit);
+    }
+
     return (<React.Fragment>
         {/* postarile */}
         {
@@ -35,6 +40,6 @@ export default function Posts() {
                 return (<Post post={post} key={id} />)
             })
         }
-        <PageNav noPages={5} changePage={changePage} offsetPage={offsetPage} curentPage={page} />
+        <PageNav noPages={5} changePage={changePage} offsetPage={offsetPage} curentPage={page} changeLimit={changeLimit} />
     </React.Fragment>);
 }
